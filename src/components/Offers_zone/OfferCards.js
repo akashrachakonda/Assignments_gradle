@@ -9,8 +9,8 @@ export default class OfferCards extends Component {
        // console.log(this.props.data.Offer_Category);
     }
 
-    toggleChild=(category,desc,start,end)=>{
-      this.props.toggle(category,desc,start,end);
+    toggleChild=(category,desc,start,end,couponCode)=>{
+      this.props.toggle(category,desc,start,end,couponCode);
    
     }
 
@@ -25,7 +25,7 @@ export default class OfferCards extends Component {
               hover
               overlay='white-slight'
               className='card-img-top'
-              src={`http://localhost:3000/${this.props.data.Offer_Category}.jpg`}
+              src={`http://localhost:3000/${this.props.data.offerCategory}.jpg`}
               alt='food'
               style={{height:'120px'}}
             />
@@ -34,17 +34,17 @@ export default class OfferCards extends Component {
           <MDBCardBody style={{height:"180px"}}>
             <h5 className='pink-text' style={{height:"40px"}}>
               
-              <MDBIcon icon={this.props.data.Icon_Name} style={{paddingRight:'10px'}}/> 
+              <MDBIcon icon={this.props.data.iconName} style={{paddingRight:'10px'}}/> 
             
-              {this.props.data.Offer_Category}
+              {this.props.data.offerCategory}
             </h5>
 
             <MDBCardText className='font-weight-bold' style={{height:"45px"}} >
-            {this.props.data.Offer_Desc}
+            {this.props.data.offerDesc}
             </MDBCardText>
 
 
-            <MDBBtn  color='primary' size="sm" style={{borderRadius:"25px",marginLeft:"35px"}}onClick={()=>{this.toggleChild(this.props.data.Offer_Category,this.props.data.Offer_Desc,this.props.data.Start_Date,this.props.data.End_Date)}} >Claim</MDBBtn>
+            <MDBBtn  color='primary' size="sm" style={{borderRadius:"25px",marginLeft:"18px"}}onClick={()=>{this.toggleChild(this.props.data.offerCategory,this.props.data.offerDesc,this.props.data.startDate,this.props.data.endDate,this.props.data.couponCode)}} >Claim</MDBBtn>
           </MDBCardBody>
         </MDBCard>
         </MDBCol>

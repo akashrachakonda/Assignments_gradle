@@ -42,8 +42,9 @@ render() {
         {this.props.offerEndData}
         </MDBModalBody>
         <MDBModalFooter>
-          <MDBBtn color="unique" onClick={()=>{this.props.toggle("")}} style={{borderRadius:"25px",marginRight:"235px"}}>Close</MDBBtn>
-          <MDBBtn color="unique" style={{borderRadius:"25px"}} onClick={()=>{this.enable()}}>Copy</MDBBtn>
+          <MDBBtn color="primary" onClick={()=>{this.props.toggle("")}} style={{borderRadius:"25px",marginRight:"235px"}}>Close</MDBBtn>
+          
+          <MDBBtn color="primary" style={{borderRadius:"25px"}} onClick={()=>{this.enable()}}>Copy</MDBBtn>
         </MDBModalFooter>
       </MDBModal>
     </MDBContainer>

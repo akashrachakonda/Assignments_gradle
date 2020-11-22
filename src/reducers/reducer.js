@@ -35,6 +35,11 @@ export default (state=storeData,action)=>{
 
            }
 
+        default :
+        return {
+            ...state
+        }
+
    }
 }
 

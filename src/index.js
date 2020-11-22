@@ -4,10 +4,7 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
-// import {createStore} from 'redux';
-// import reducer from './reducers/reducer';
 
-// const store=createStore(reducer);
 
 
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -16,22 +13,17 @@ import '@fortawesome/fontawesome-free/css/all.min.css';
 import 'bootstrap-css-only/css/bootstrap.min.css'; 
 import 'mdbreact/dist/css/mdb.css';
 
-import Modal from './components/Offers_zone/Modal';
-
-import Profile_Main from './components/Profile/Profile_Main'
-
-import LoginComponent from './components/Login/LoginComponent'
+ import store from './store/configureStore';
+import { Provider } from 'react-redux';
 
 
- //import store from './store/configureStore';
-
-// console.log("+++++++++",store.getState());
 
 ReactDOM.render(
 
+<Provider store={store}>
+  <App/>
 
-  <App/>,
-
+  </Provider>,
 
   document.getElementById('root')
 );

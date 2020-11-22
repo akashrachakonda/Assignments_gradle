@@ -24,9 +24,9 @@ export default class Home extends Component {
                 <MDBView src="1.jpg">
             <MDBMask overlay="purple-light" className="flex-center flex-column text-white text-center">
             
-            <p class="line-1 anim-typewriter" style={{marginTop:"120px"}}>Welcome</p>
-            <p class="line-1 anim-typewriter1">To</p>
-            <p class="line-1 anim-typewriter2">Travel Safe With Travel Mode</p>
+            <p className="line-1 anim-typewriter" style={{marginTop:"120px"}}>Welcome</p>
+            <p className="line-1 anim-typewriter1">To</p>
+            <p className="line-1 anim-typewriter2">Travel Safe With Travel Mode</p>
 
             
            <a href="#dashboard"> <MDBBtn gradient="purple" style={{marginTop:"120px"}}>View Dashboard</MDBBtn>

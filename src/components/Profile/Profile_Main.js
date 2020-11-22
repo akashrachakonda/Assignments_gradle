@@ -49,7 +49,7 @@ export default class Profile_Main extends Component {
       <Tab.Content>
 
         <Tab.Pane eventKey="first1"  style={{borderColor:"#d5d8de",borderStyle:"solid",paddingTop:"80px",paddingBottom:"50px",paddingLeft:"15px",paddingRight:"25px",boxShadow:" 5px 10px 20px #007BFF inset"}}>
-        <Profile/>
+        <Profile />
       
         </Tab.Pane>
 

@@ -90,12 +90,12 @@ this.setState({
    axios.get("http://localhost:2020/offers/all/IN")
    .then(res => {
 
-    console.log(this.props);
+    //console.log(this.props);
     var data = res.data;
 
     var slice = data.slice(this.state.offset, this.state.offset + this.state.perPage)
     
-    //console.log(res.data.length);
+    console.log(res.data);
 
     this.setState({
         pageCount: Math.ceil(data.length / this.state.perPage),
@@ -149,13 +149,13 @@ offerEndData={this.state.offerEndData}
 
   Mainarr.map((x,i)=>{
     
-    console.log(i);
+    //console.log(i);
     return (<MDBRow key={i}>
       {
         
     Innerarr.map((y,j)=>{
 
-      console.log(this.state.tableData[i*4+j])
+      //console.log(this.state.tableData[i*4+j])
       return(
 
       
@@ -197,8 +197,8 @@ style={{color:"white"}}
  
 }
 
-// var Conn=connect(mapStateToProps)(Offers);
-export default Offers;
+var Conn=connect(mapStateToProps)(Offers);
+export default Conn;
 
 
 
