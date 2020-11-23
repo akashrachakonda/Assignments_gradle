@@ -37,7 +37,7 @@ toggle=()=>{
 
 addOffersClaimed=()=>{
   const options={
-  customerId:"123",
+  customerId:localStorage.getItem("customerId"),
   couponCode:this.props.couponCode,
   offerCategory:this.props.offerCategory,
   offerDescription:this.props.offerDesc,

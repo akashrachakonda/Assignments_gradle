@@ -18,7 +18,19 @@ export default class Home extends Component {
 
     constructor(props){
         super(props)
+        this.state={
+          landingPageImage:""
+         }
     }
+
+
+    componentDidMount(){
+      this.setState({
+          landingPageImage:document.getElementById("landingPage").style.backgroundImage=
+          `url(${window.landingPageImage})`
+      })
+      
+  }
 
     // onLoadHandler=()=>{
     //   document.getElementById("landingPage").style.backgroundImage=
@@ -32,7 +44,7 @@ export default class Home extends Component {
         return (
             <div > 
                 
-        <LandingPage/>
+        <LandingPage landingPageImage={this.state.landingPageImage}/>
 
         <main>
           <Container className="text-center my-5" id="dashboard"
@@ -43,7 +55,7 @@ export default class Home extends Component {
          
 
 
-           {this.props.switchToggle?<Dashboard />:
+           {this.props.switchToggle?<Dashboard landingPageImage={this.state.landingPageImage} />:
            
            <div style={{borderColor:"#d5d8de",borderStyle:"solid",paddingTop:"50px",paddingBottom:"75px",paddingRight:"10px",paddingLeft:"10px",boxShadow:" 5px 10px 20px #007BFF inset"}}>
 

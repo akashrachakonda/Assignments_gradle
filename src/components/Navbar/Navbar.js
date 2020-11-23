@@ -28,6 +28,8 @@ class Navbar extends React.Component {
   
 
   render() {
+
+    console.log(this.props.customerId);
     return (
       <div>
     
@@ -45,9 +47,9 @@ class Navbar extends React.Component {
               {!this.state.isWideEnough && <MDBNavbarToggler onClick={this.onClick} />}
               <MDBCollapse isOpen={this.state.collapse} navbar style={{paddingLeft:"20px"}}>
 
-
+                  {
                
-
+                  this.props.isAuthenticated ?
                   <MDBNavbarNav right>
 
 
@@ -62,7 +64,7 @@ class Navbar extends React.Component {
                   
               
                   <MDBIcon far icon="bell" style={{color:"white",paddingTop:"10px",paddingRight:"30px"}} title="Notifications"
-                   onClick={this.props.handleNotificationChange}/>
+                   onClick={this.props.handleNotificationChange} />
                   
                 
                   </MDBNavItem>
@@ -81,26 +83,30 @@ class Navbar extends React.Component {
 
 
                   <MDBNavItem >
-                    <MDBNavLink to="#">Logout</MDBNavLink>
+                    <MDBNavLink to="#" onClick={this.props.unauthenticate}>Logout</MDBNavLink>
                   </MDBNavItem>
 
 
                   
-                  {/* <MDBNavItem >
+                  
+
+                  </MDBNavbarNav> :
+
+
+                  <MDBNavbarNav right>
+                  <MDBNavItem >
                   <MDBNavLink to="/login"> Login</MDBNavLink>
-                  </MDBNavItem> */}
+                  </MDBNavItem> 
                 
-
                   </MDBNavbarNav>
-
-
-
+                  }
                
               </MDBCollapse>
             </MDBNavbar>
 
             {this.props.switchToggle && <ToggleModal />}
-            {this.props.notificationToggle && <Notification_modal/>}
+            {this.props.notificationToggle && <Notification_modal 
+            cutomerId={this.props.customerId}/>}
             
           
       </div>

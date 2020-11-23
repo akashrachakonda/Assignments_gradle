@@ -23,7 +23,8 @@ constructor(props){
 
 componentDidMount(){
 
-  var customerID=123;
+  var customerID=this.props.customerId;
+  //console.log(this.props.customerId)
   
   axios.get(`http://localhost:2020/customerDetails/${customerID}`)
   .then(res => {
@@ -97,13 +98,13 @@ componentDidMount(){
         </Tab.Pane>
 
         <Tab.Pane eventKey="second1" style={{borderColor:"#d5d8de",borderStyle:"solid",paddingTop:"80px",paddingBottom:"75px",paddingLeft:"15px",paddingRight:"25px",boxShadow:" 5px 10px 20px #007BFF inset"}}>
-         <Transaction Transactions={this.state.Transactions}/>
+         <Transaction Transactions={this.state.Transactions} />
         </Tab.Pane>
         <Tab.Pane eventKey="third1" style={{borderColor:"#d5d8de",borderStyle:"solid",paddingTop:"80px",paddingBottom:"75px",paddingLeft:"15px",paddingRight:"25px",boxShadow:" 5px 10px 20px #007BFF inset"}}>
        <Accounts accountId={this.state.accountId} customerId={this.state.customerId} />
         </Tab.Pane>
         <Tab.Pane eventKey="fourth1" style={{borderColor:"#d5d8de",borderStyle:"solid",paddingTop:"80px",paddingBottom:"75px",paddingLeft:"15px",paddingRight:"25px",boxShadow:" 5px 10px 20px #007BFF inset"}}>
-         <ClaimedOffers/>
+         <ClaimedOffers customerId={this.props.customerId}/>
         </Tab.Pane>
       </Tab.Content>
     </Col>

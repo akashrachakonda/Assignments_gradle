@@ -8,7 +8,8 @@ import 'react-dates/initialize';
 import {DateRangePicker } from 'react-dates';
 
 import moment from 'moment';
-import 'react-dates/lib/css/_datepicker.css'
+import 'react-dates/lib/css/_datepicker.css';
+import InsuranceCards from '../InsuranceCards/InsuranceCards.js';
 
 class Travel_Insurance_main extends Component{
     constructor(props){
@@ -18,7 +19,8 @@ class Travel_Insurance_main extends Component{
     state = {
       startDate: moment(),
       endDate: moment().add(5, "day"),
-      focusedInput: null
+      focusedInput: null,
+      insuranceClaimed:[]
 
     }
 
@@ -31,6 +33,37 @@ class Travel_Insurance_main extends Component{
 
     }
 
+
+    handler=()=>{
+  
+      let numberOfDays=(this.state.endDate -this.state.startDate)/86400000;
+     let resultSet=[]
+     if(numberOfDays<3){
+       resultSet=[]
+     }else{
+       let offerPercentage = numberOfDays>10?0.4:0.1;
+       ["Silver","Gold","Diamond"].forEach((obj,index)=>{
+       resultSet.push({
+         key:index,
+         name:obj,
+         tripCancellation:"100%",
+         medicalCoverage:50000*(index+1),
+         burglaryInsurance: 25000*(index+1),
+         travelDelay:20000,
+         accidentalDeath:35000*(index+1),
+         totalPrice:Math.ceil(1000*numberOfDays*(index+1)-1000*numberOfDays*(index+1)*offerPercentage)
+       })
+     })
+     console.log(resultSet)
+     this.setState({
+      insuranceClaimed:resultSet
+     })
+
+     }
+   }
+
+
+
     render(){
 
       //console.log(this.state.startDate+"++++++"+this.state.endDate);
@@ -38,7 +71,7 @@ class Travel_Insurance_main extends Component{
  return(
    <Container>
            
-   <Card style={{height:"300px",backgroundColor:"#E0E0E0"}}>
+   <Card style={{backgroundColor:"#E0E0E0",paddingRight:"15px"}}>
  
 <Card.Body>
 <Form>
@@ -87,12 +120,34 @@ class Travel_Insurance_main extends Component{
             />
 </div>
 
-   <MDBBtn color="primary" style={{marginTop:"30px",borderRadius:"25px"}}>Save</MDBBtn>
+   <MDBBtn  onClick={()=>this.handler()} color="primary" style={{marginTop:"30px",borderRadius:"25px"}}>Save</MDBBtn>
 </Form>
+
+
+
+
+
+<Row> 
+{
+this.state.insuranceClaimed.map((data,i)=>{
+return (
+
+<Col sm={4}>
+<InsuranceCards data={data}/>
+</Col>
+)
+})
+
+
+}
+</Row>
+
 
 </Card.Body>
 
 </Card>
+
+
       </Container>
         );
     }

@@ -64,7 +64,7 @@
 }
      </style>
 
-<script defer>
+<script >
 
 var landingPageImage="";
 
@@ -76,7 +76,7 @@ $.getJSON('https://ipapi.co/json/', function(data) {
   landingPageImage = data.country_code+date_time+'.jpg';
 
   document.getElementById("imgs").style.backgroundImage=`url(${landingPageImage})`;
-document.getElementById("landingPage").style.backgroundImage=`url(${landingPageImage})`;
+//document.getElementById("landingPage").style.backgroundImage=`url(${landingPageImage})`;
 
 });
   </script>
@@ -85,6 +85,7 @@ document.getElementById("landingPage").style.backgroundImage=`url(${landingPageI
 
     <title>Travel Safe With Travel Mode</title>
   </head>
+
   <body id="imgs" class="parallax" >
 
 

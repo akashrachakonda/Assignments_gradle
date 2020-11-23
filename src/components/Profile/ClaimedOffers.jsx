@@ -14,7 +14,7 @@ class ClaimedOffers extends React.Component
   }
 
   componentDidMount(){
-    var customerId="123"
+    var customerId=this.props.customerId
     axios.get(`http://localhost:2020/offers/claim/${customerId}`)
     .then(res => {
       this.setState({

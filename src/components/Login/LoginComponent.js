@@ -4,40 +4,38 @@ import { Card,Container } from 'react-bootstrap';
 export default class LoginComponent extends Component {
     constructor(props){
         super(props)
-        this.state = {
-            users: [],
-            userId : ""
-        }
-        this.updateInput = this.updateInput.bind(this);
-        this.validate = this.validate.bind(this);
-    }
-    componentDidMount() {
-        axios.get(`http://localhost:3000/Sheet1`)
-          .then(res => {
-            const userss = res.data;
-            this.setState({ users : userss});
-          })
-      }
-      
-      updateInput(event){
-        this.setState({userId : event.target.value})
-        }
-    validate(){
-       var temp = this.state.userId
-       var i = 0
-        for(i = 0; i < this.state.users.length; i++) {
-            var obj = this.state.users[i];
-            if(temp == obj.CustomerId)
-            {
-                alert("Valid User")
-                break
-            }
-        }
-        if(i >= this.state.users.length){
-        alert("Invalid Users")
+        this.state={
+            error:""
         }
         
     }
+
+    handleLogin=(e)=>{
+
+        e.preventDefault()
+       var customerId=e.target.customerId.value;
+       axios.get(`http://localhost:2020/authenticate/${customerId}`)
+       .then(res=>{
+           console.log(res.data)
+
+           if(res.data)
+           {
+            this.props.authenticate(customerId)
+           }
+           else
+           {
+            this.setState({
+                error:"Invalid User"    
+            });
+           }
+       
+        })
+       
+    }
+
+      
+   
+
    
    render() {
       return (
@@ -47,18 +45,18 @@ export default class LoginComponent extends Component {
 
             
          <div>
-            <form>
-  
-
+            <form onSubmit={this.handleLogin}>
+                
+                <span style={{color:"red"}}>{this.state.error}</span>
                 <div className="form-group">
                     <label>Enter UserID:</label>
-                    <input onChange={this.updateInput} type="text" className="form-control" placeholder="Enter User Id" required/>
+                    <input type="text" className="form-control" name="customerId" placeholder="Enter User Id" required/>
                 </div>
 
 
                 
 
-                <button type="button" className="btn btn-primary btn-block" onClick={this.validate}>Login</button>
+                <button type="submit" className="btn btn-primary btn-block"  >Login</button>
                 
             </form>
          </div>

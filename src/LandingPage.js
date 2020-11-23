@@ -5,22 +5,15 @@ export default class LandingPage extends Component {
 
     constructor(props){
         super(props);
-       this.state={
-        landingPageImage:""
-       }
+      
     }
-componentDidMount(){
-    this.setState({
-        landingPageImage:document.getElementById("landingPage").style.backgroundImage=
-        `url(${window.landingPageImage})`
-    })
     
-}
+
 
     render() {
         return (
             <div>
-                <MDBView src={this.state.landingPageImage} id="landingPage" >
+                <MDBView src={this.props.landingPageImage} id="landingPage" >
             <MDBMask overlay="purple-light" className="flex-center flex-column text-white text-center">
             
             <p className="line-1 anim-typewriter" style={{marginTop:"120px"}}>Welcome</p>

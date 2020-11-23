@@ -4,6 +4,7 @@ import Offers from '../Offers_zone/Offers'
 import Forex from '../Forex/Forex'
 import Travel_Insurance_main from '../Travel_Insurance/Travel_Insurance_main/Travel_Insurance_main'
 
+import {MDBMask,MDBView} from 'mdbreact';
 
 export default class Dashboard extends Component {
 
@@ -15,8 +16,11 @@ export default class Dashboard extends Component {
 
 
 
+
     render() {
         return (
+          
+
             <div style={{height:"100px"}}>
 
 
@@ -58,6 +62,7 @@ export default class Dashboard extends Component {
 
                 
             </div>
+       
         )
     }
 }
