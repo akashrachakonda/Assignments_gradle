@@ -64,10 +64,26 @@
 }
      </style>
 
+<script defer>
+
+var landingPageImage="";
+
+console.log("as");
+$.getJSON('https://ipapi.co/json/', function(data) {
+  console.log(data.country_code);
+  var date_time=new Date().getHours()>=12 ? 2:1
+
+  landingPageImage = data.country_code+date_time+'.jpg';
+
+  document.getElementById("imgs").style.backgroundImage=`url(${landingPageImage})`;
+document.getElementById("landingPage").style.backgroundImage=`url(${landingPageImage})`;
+
+});
+  </script>
 
 
 
-    <title>React App</title>
+    <title>Travel Safe With Travel Mode</title>
   </head>
   <body id="imgs" class="parallax" >
 
@@ -89,7 +105,6 @@
    
 
   </body>
-
 
 
 

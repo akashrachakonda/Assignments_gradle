@@ -26,18 +26,25 @@ class Offers extends Component {
   constructor(props) {
     super(props)
 
+    this.refCat=React.createRef();
+
+    this.refCountry=React.createRef();
+
     this.state = {
         offset: 0,
         tableData: [],
         orgtableData: [],
         perPage: 8,
-        currentPage: 0,
-        modalVisible:false,
-        offerCategory:"",
+        currentPage: 1,
+     
+        offerCategory:"all",
+        country:"IN",
         offerDesc:"",
         offerStartDate:"",
         offerEndData:"",
-        iconName:""
+        iconName:"",
+        isLoading:true,
+        exeComponentDidMount:false
     
     }
     this.handlePageClick = this.handlePageClick.bind(this);
@@ -82,20 +89,69 @@ this.setState({
 
 }
 
+handleFiltersChange=()=>{
+ this.setState({
+offerCategory:this.refCat.current.value,
+country:this.refCountry.current.value,
+exeComponentDidMount:true
+ });
+
+ console.log(this.refCat.current.value)
+}
+
+// shouldComponentUpdate(nextProps,nextState){
+
+// return (this.state.tableData.length==0 )
+
+// }
+
+componentDidUpdate(){
+
+       
+
+if(this.state.exeComponentDidMount){
+  axios.get(`http://localhost:2020/offers/${this.state.offerCategory}/${this.state.country}`)
+  .then(res => {
+
+   //console.log(this.props);
+   
+   console.log(res.data);
+   var data = res.data;
+
+   var slice = data.slice(this.state.offset, this.state.offset + this.state.perPage)
+   
+   console.log(this.state.offerCategory);
+
+   this.setState({
+        isLoading:false,
+       pageCount: Math.ceil(data.length / this.state.perPage),
+       orgtableData :res.data,
+       tableData:slice,
+       exeComponentDidMount:false
+   })
+});
+}
+
+  
+}
+
   componentDidMount(){
 
-    
 
 
-   axios.get("http://localhost:2020/offers/all/IN")
+     
+
+
+   axios.get(`http://localhost:2020/offers/${this.state.offerCategory}/${this.state.country}`)
    .then(res => {
+    console.log(res.data.length);
 
-    //console.log(this.props);
+    console.log(this.state.offerCategory);
     var data = res.data;
 
     var slice = data.slice(this.state.offset, this.state.offset + this.state.perPage)
     
-    console.log(res.data);
+    //console.log(res.data);
 
     this.setState({
         pageCount: Math.ceil(data.length / this.state.perPage),
@@ -124,21 +180,18 @@ this.setState({
  
  <div>
 
-<Modal 
-modalVisible={this.state.modalVisible} 
-toggle={this.toggle} 
-offerCategory={this.state.offerCategory}
-offerDesc={this.state.offerDesc}
-offerStartDate={this.state.offerStartDate}
-offerEndData={this.state.offerEndData}
-/>
+
+
     <Container>
 
 
 
 
     <div>
-  <Filter/>
+  <Filter innerRef={
+    {refCat:this.refCat,refCountry:this.refCountry}
+  }  handleFiltersChange={this.handleFiltersChange}/>
+  
 </div>
 
 
@@ -156,11 +209,19 @@ offerEndData={this.state.offerEndData}
     Innerarr.map((y,j)=>{
 
       //console.log(this.state.tableData[i*4+j])
-      return(
+   
 
-      
-     < OfferCards data={this.state.tableData[i*4+j]} key={i*4+j} toggle={this.toggle}/>
-       );
+     
+       if(i*4+j<this.state.tableData.length){
+        return (
+     < OfferCards data={this.state.tableData[i*4+j]} key={i*4+j} toggle={this.toggle}/>);
+       }
+       else
+       {
+         return false;
+       }
+
+  
 
     })
   }
@@ -175,7 +236,7 @@ previousLabel={"prev"}
 nextLabel={"next"}
 breakLabel={"..."}  
 breakClassName={"break-me"}
-pageCount={this.state.pageCount}
+pageCount={this.state.pageCount-1}
 marginPagesDisplayed={2}
 pageRangeDisplayed={5}
 onPageChange={this.handlePageClick}

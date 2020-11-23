@@ -10,8 +10,8 @@ TODO:
 import $ from 'jquery'
 
 (function( $ ) {
-    var MAX_ROCKETS = 5,
-        MAX_PARTICLES = 1000;
+    var MAX_ROCKETS = 15,
+        MAX_PARTICLES = 2000;
 
     var FUNCTIONS = {
         'init': function(element) {

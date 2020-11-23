@@ -1,8 +1,20 @@
 import React from "react";
 import Table from 'react-bootstrap/Table'
 import {Card,Container,Row,Col} from 'react-bootstrap'
+import PerfectScrollbar from 'react-perfect-scrollbar'
+import 'react-perfect-scrollbar/dist/css/styles.css';
+import Scrollbar from 'react-perfect-scrollbar'
+
+import './Transaction.css';
+
+
 class Transaction extends React.Component
 {
+  constructor(props){
+    super(props)
+  }
+
+
     render()
     {
         return(
@@ -11,34 +23,43 @@ class Transaction extends React.Component
   <Card>
      <Card.Body>
             
-            <Table striped bordered hover>
-  <thead>
+<Table striped bordered hover className="table-wrapper-scroll-y my-custom-scrollbar">
+  <thead >
     <tr>
-      <th>#</th>
-      <th>Transaction ID</th>
-      <th>Transaction type</th>
-      <th>Amount(SGD)</th>
+      <th style={{width:"150px"}}>S.No</th>
+      <th style={{width:"170px"}}>Transaction ID</th>
+      <th style={{width:"200px"}}>Transaction Category</th>
+      <th style={{width:"200px"}}>Amount</th>
     </tr>
   </thead>
-  <tbody>
-    <tr>
-      <td>1</td>
-      <td>1000</td>
-      <td>fuel</td>
-      <td>100</td>
+  
+  <tbody >
+    
+
+
+    {
+    
+
+    this.props.Transactions.map((data,i)=>{
+
+      return (
+ 
+        <tr key={i} >
+      <td  >{i+1}</td>    
+      <td>{data.transactionId}</td>
+      <td>{data.transactionCategory}</td>
+      <td>{data.transactionAmount}</td>
     </tr>
-    <tr>
-      <td>2</td>
-      <td>1001</td>
-      <td>movie</td>
-      <td>20</td>
-    </tr>
-    <tr>
-      <td>3</td>
-      <td >1003</td>
-      <td>transport</td>
-      <td>30</td>
-    </tr>
+
+      );
+
+
+    })
+    
+    }
+
+ 
+
   </tbody>
 </Table>
 </Card.Body>

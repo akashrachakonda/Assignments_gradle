@@ -13,7 +13,7 @@ const storeData={
 export default (state=storeData,action)=>{
     var tempOffers;
   
-
+    
    switch(action.type){
        case "ADD_NEW_OFFER":
            tempOffers = state.offers;

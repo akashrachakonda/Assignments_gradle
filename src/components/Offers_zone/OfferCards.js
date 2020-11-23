@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { MDBBtn, MDBCard, MDBCardBody, MDBCardImage, MDBCardTitle, MDBCardText, MDBRow, MDBCol, MDBView, MDBIcon } from 'mdbreact';
-
+import Modal from './Modal'
 
 
 export default class OfferCards extends Component {
@@ -8,15 +8,27 @@ export default class OfferCards extends Component {
         super(props);
        // console.log(this.props.data.Offer_Category);
     }
+    state={
+      modalVisible:false
 
-    toggleChild=(category,desc,start,end,couponCode)=>{
-      this.props.toggle(category,desc,start,end,couponCode);
+    }
+
+    // toggleChild=(category,desc,start,end,couponCode)=>{
+    //   this.props.toggle(category,desc,start,end,couponCode);
+    //   console.log("CLAIM");
    
+    // }
+
+    toggle=()=>{
+      this.setState({
+        modalVisible:!this.state.modalVisible
+      })
     }
 
     render() {
      
         return (
+          
            
      <MDBCol md='3'style={{height:"350px"}}>
 <MDBCard narrow id="OfferCard">
@@ -44,18 +56,37 @@ export default class OfferCards extends Component {
             </MDBCardText>
 
 
-            <MDBBtn  color='primary' size="sm" style={{borderRadius:"25px",marginLeft:"18px"}}onClick={()=>{this.toggleChild(this.props.data.offerCategory,this.props.data.offerDesc,this.props.data.startDate,this.props.data.endDate,this.props.data.couponCode)}} >Claim</MDBBtn>
+            <MDBBtn  color='primary' size="sm" style={{borderRadius:"25px",marginLeft:"18px"}}onClick={()=>{this.toggle()}} >Claim</MDBBtn>
           </MDBCardBody>
         </MDBCard>
+
+
+        {this.state.modalVisible &&
+            <Modal 
+            modalVisible={this.state.modalVisible} 
+            toggle={this.toggle} 
+            offerCategory={this.props.data.offerCategory}
+            offerDesc={this.props.data.offerDesc}
+            offerStartDate={this.props.data.startDate}
+            offerEndData={this.props.data.endDate}
+            couponCode= {this.props.data.couponCode}
+            />}
+
+
+
         </MDBCol>
-      
 
-   
-              
-
+          
 
                 
           
         )
+
+
+
+
+
+
+
     }
 }

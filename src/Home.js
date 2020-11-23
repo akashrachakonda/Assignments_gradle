@@ -9,6 +9,8 @@ import './App.css';
 import Dashboard from './components/Dashboard/Dashboard';
 import { Container } from 'react-bootstrap';
 
+import LandingPage from  './LandingPage';
+
 import ToggleModal from  './components/ToggleModal/ToggleModal';
 
 
@@ -18,25 +20,19 @@ export default class Home extends Component {
         super(props)
     }
 
+    // onLoadHandler=()=>{
+    //   document.getElementById("landingPage").style.backgroundImage=
+    //   `url(${window.landingPageImage})`
+    // }
+
+    
+
     render() {
-        return (
-            <div>
-                <MDBView src="1.jpg">
-            <MDBMask overlay="purple-light" className="flex-center flex-column text-white text-center">
-            
-            <p className="line-1 anim-typewriter" style={{marginTop:"120px"}}>Welcome</p>
-            <p className="line-1 anim-typewriter1">To</p>
-            <p className="line-1 anim-typewriter2">Travel Safe With Travel Mode</p>
-
-            
-           <a href="#dashboard"> <MDBBtn gradient="purple" style={{marginTop:"120px"}}>View Dashboard</MDBBtn>
-              </a>  
-
       
-            </MDBMask>
-           
-          </MDBView>
-        
+        return (
+            <div > 
+                
+        <LandingPage/>
 
         <main>
           <Container className="text-center my-5" id="dashboard"

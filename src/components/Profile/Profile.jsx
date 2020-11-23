@@ -4,6 +4,9 @@ import {MDBIcon} from 'mdbreact';
 
 class Profile extends React.Component
 {
+  constructor(props){
+    super(props)
+  }
 
 render ()
 {
@@ -21,13 +24,13 @@ return(
      
   <Form.Group controlId="formBasicEmail">
     <Form.Label>Customer Id:</Form.Label>
-    <Form.Control type="text" />
+    <Form.Control type="text" value={this.props.customerId}  />
 
   </Form.Group>
 
   <Form.Group controlId="formBasicEmail">
     <Form.Label>Account Id:</Form.Label>
-    <Form.Control type="text" />
+    <Form.Control type="text" value={this.props.accountId} />
 
   </Form.Group>
 
